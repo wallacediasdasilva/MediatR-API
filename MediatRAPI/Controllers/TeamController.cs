@@ -20,7 +20,7 @@ namespace DDDAPI.Controllers
         {
             _teamApplication.Create(teamDTO);
 
-            return Ok("Time cadastrato com sucesso!");
+            return Created(string.Empty, "Time cadastrato com sucesso!");
         }
 
         [HttpPut("{id}")]
