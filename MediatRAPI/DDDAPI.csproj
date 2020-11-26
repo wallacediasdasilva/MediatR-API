@@ -20,12 +20,13 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MediatRAPI.Application\MediatRAPI.Application.csproj" />
-    <ProjectReference Include="..\MediatRAPI.CrossCutting\MediatRAPI.CrossCutting.csproj" />
-    <ProjectReference Include="..\MediatRAPI.Persistence\MediatRAPI.Persistence.csproj" />
+    <ProjectReference Include="..\MediatRAPI.Application\DDDAPI.Application.csproj" />
+    <ProjectReference Include="..\MediatRAPI.CrossCutting\DDDAPI.CrossCutting.csproj" />
+    <ProjectReference Include="..\MediatRAPI.Persistence\DDDAPI.Persistence.csproj" />
   </ItemGroup>
 
   <ItemGroup>

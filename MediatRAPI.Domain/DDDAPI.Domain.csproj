@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MediatRAPI.CrossCutting.Support\MediatRAPI.CrossCutting.Support.csproj" />
+    <ProjectReference Include="..\MediatRAPI.CrossCutting.Support\DDDAPI.CrossCutting.Support.csproj" />
   </ItemGroup>
 
 </Project>

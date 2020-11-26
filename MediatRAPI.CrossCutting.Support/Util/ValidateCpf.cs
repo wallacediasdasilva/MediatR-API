@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MediatRAPI.CrossCutting.Support.Util
+namespace DDDAPI.CrossCutting.Support.Util
 {
     public class ValidateCpf
     {

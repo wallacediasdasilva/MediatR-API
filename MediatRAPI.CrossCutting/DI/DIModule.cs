@@ -1,41 +1,34 @@
 ﻿using AutoMapper;
-using MediatRAPI.Domain.Interfaces.UserRepository;
-using MediatRAPI.Persistence.EFCore.Context;
-using MediatRAPI.Persistence.EFCore.Repository.UserRepository;
+using DDDAPI.Application.App;
+using DDDAPI.Application.App.Interface;
+using DDDAPI.Domain.Interfaces.TeamRepository;
+using DDDAPI.Persistence.EFCore.Context;
+using DDDAPI.Persistence.EFCore.Repository.TeamRepository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace MediatRAPI.CrossCutting.DI
+namespace DDDAPI.CrossCutting.DI
 {
     public class DIModule
     {
-        public static void ConfigureDbConnection(IServiceCollection serviceCollection)
+        public static void ConfigureDbConnection(IServiceCollection serviceCollection, IConfiguration configuration)
         {
-            var configuration = ConfigureJson();
-
             string connectionString = configuration.GetConnectionString("MediatRDb");
 
             serviceCollection.AddDbContext<MediatRContext>(options =>
                                                       options.UseSqlServer(connectionString));
         }
 
-        private static IConfiguration ConfigureJson()
-        {
-            var sharedFolder = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\Shared"));
-
-            return new ConfigurationBuilder().AddJsonFile(Path.Combine(sharedFolder, "Config.json")).Build();
-        }
-
         public static void ConfigureClassesDI(IServiceCollection serviceCollection)
         {
+            serviceCollection.AddScoped<ITeamApplication, TeamApplication>();
             #region [ Repository ]
 
-            serviceCollection.AddScoped<IUserRepository, UserRepository>();
+            serviceCollection.AddScoped<ITeamRepository, TeamRepository>();
 
             #endregion [ Repository ]
 

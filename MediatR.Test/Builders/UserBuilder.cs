@@ -1,6 +1,6 @@
 using Bogus;
 using Bogus.Extensions.Brazil;
-using MediatRAPI.Domain.User;
+using MediatRAPI.Domain.Team;
 using System;
 
 namespace MediatR.Test.Builders
@@ -50,9 +50,9 @@ namespace MediatR.Test.Builders
             return this;
         }
 
-        public UserEntity Build()
+        public TeamEntity Build()
         {
-            var user = new UserEntity(Name, Cpf, Email, Phone);
+            var user = new TeamEntity(Name, Cpf, Email, Phone);
 
             if (Id <= 0) return user;
 

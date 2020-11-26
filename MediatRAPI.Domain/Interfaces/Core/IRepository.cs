@@ -1,15 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
-namespace MediatRAPI.Domain.Interfaces.Core
+namespace DDDAPI.Domain.Interfaces.Core
 {
     public interface IRepository<TEntity> where TEntity : class 
     {
-        public Task Create(TEntity entity);
-        public Task Update(int id, TEntity entity);
-        public Task Delete(int id, TEntity entity);
-        public Task<IEnumerable<TEntity>> GetAll();
-        public Task<TEntity> GetById(int id);
+        public void Create(TEntity entity);
+        public void Update(TEntity entity);
+        public void Delete(TEntity entity);
+        public TEntity GetById(int id);
         public void SaveChanges();
     }
 }

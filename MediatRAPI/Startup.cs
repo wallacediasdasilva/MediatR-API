@@ -1,5 +1,5 @@
 using MediatR;
-using MediatRAPI.CrossCutting.DI;
+using DDDAPI.CrossCutting.DI;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Reflection;
 
-namespace MediatRAPI
+namespace DDDAPI
 {
     public class Startup
     {
@@ -21,11 +21,11 @@ namespace MediatRAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            DIModule.ConfigureDbConnection(services);
+            DIModule.ConfigureDbConnection(services, Configuration);
             DIModule.ConfigureClassesDI(services);
 
-            services.AddMediatR(typeof(MediatRAPI.Application.AppUser.Command.UserCreateCommand).GetTypeInfo().Assembly);
             services.AddControllers();
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,6 +37,13 @@ namespace MediatRAPI
             }
 
             app.UseHttpsRedirection();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
 
             app.UseRouting();
 

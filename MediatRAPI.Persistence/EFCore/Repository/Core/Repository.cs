@@ -1,11 +1,7 @@
-﻿using MediatRAPI.Domain.Interfaces.Core;
-using MediatRAPI.Persistence.EFCore.Context;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using DDDAPI.Domain.Interfaces.Core;
+using DDDAPI.Persistence.EFCore.Context;
 
-namespace MediatRAPI.Persistence.EFCore.Repository.Core
+namespace DDDAPI.Persistence.EFCore.Repository.Core
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
@@ -16,47 +12,34 @@ namespace MediatRAPI.Persistence.EFCore.Repository.Core
             _mediatRContext = mediatRContext;
         }
 
-        public async Task Create(TEntity entity)
+        public void Create(TEntity entity)
         {
             _mediatRContext.Add(entity);
             SaveChanges();
         }
 
-        public async Task Delete(int id, TEntity entity)
+        public void Delete(TEntity entity)
         {
-            var entities = GetById(id);
-
-            if (entities != null)
-            {
-                await Task.Run(() => _mediatRContext.Set<TEntity>().Remove(entity));
-            }
+            _mediatRContext.Remove(entity);
+            
             SaveChanges();
         }
 
-        public async Task<IEnumerable<TEntity>> GetAll()
+        public TEntity GetById(int id)
         {
-            return await Task.FromResult(_mediatRContext.Set<TEntity>().ToList());
+            return _mediatRContext.Set<TEntity>().Find(id);
         }
 
-        public async Task<TEntity> GetById(int id)
+        public void Update(TEntity entity)
         {
-            return await Task.FromResult(_mediatRContext.Set<TEntity>().Find(id));
-        }
+            _mediatRContext.Update(entity);
 
-        public async Task Update(int id, TEntity entity)
-        {
-            var entities = GetById(id);
-
-            if (entities != null)
-            {
-                await Task.Run(() => _mediatRContext.Entry(entity).State = EntityState.Modified);
-            }
             SaveChanges();
         }
 
         public void SaveChanges()
         {
-            _mediatRContext.SaveChangesByUser();
+            _mediatRContext.SaveChangesByTeam();
         }
     }
 }

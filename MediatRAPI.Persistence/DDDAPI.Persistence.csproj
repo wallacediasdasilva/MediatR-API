@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MediatRAPI.Domain\MediatRAPI.Domain.csproj" />
+    <ProjectReference Include="..\MediatRAPI.Domain\DDDAPI.Domain.csproj" />
   </ItemGroup>
 
 </Project>
