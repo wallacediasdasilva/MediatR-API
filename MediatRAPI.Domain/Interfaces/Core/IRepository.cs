@@ -1,8 +1,6 @@
-﻿using System.Threading.Tasks;
-
-namespace DDDAPI.Domain.Interfaces.Core
+﻿namespace DDDAPI.Domain.Interfaces.Core
 {
-    public interface IRepository<TEntity> where TEntity : class 
+    public interface IRepository<TEntity>  where TEntity : class
     {
         public void Create(TEntity entity);
         public void Update(TEntity entity);

@@ -23,7 +23,7 @@ namespace DDDAPI.Domain.Team
             Id = id;
         }
 
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public string Name { get; private set; }
         public string Modality { get; private set; }
         public int QtdPlayers { get; private set; }

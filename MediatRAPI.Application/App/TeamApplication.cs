@@ -18,43 +18,27 @@ namespace DDDAPI.Application.App
 
         public void Create(TeamCreateDTO teamsDTO)
         {
-            var teams = new TeamEntity(teamsDTO.Name, teamsDTO.Modality, teamsDTO.QtdPlayers);
+            var teams = _mapper.Map<TeamEntity>(teamsDTO);
 
             _teamRepository.Create(teams);
         }
 
         public void Delete(int id)
         {
-            var teams = _teamRepository.GetById(id);
-
-            _teamRepository.Delete(teams);
+            _teamRepository.Delete(_teamRepository.GetById(id));
         }
 
         public TeamListDTO GetById(int id)
         {
-            var teams = _teamRepository.GetById(id);
-
-            var team = new TeamListDTO()
-            {
-                Name = teams.Name,
-                Modality = teams.Modality,
-                QtdPlayers = teams.QtdPlayers
-            };
-
-            return team;
+            return _mapper.Map<TeamListDTO>(_teamRepository.GetById(id));
         }
 
         public void Update(int id, TeamUpdateDTO teamDTO)
         {
-            var teams = _teamRepository.GetById(id);
 
-            if (teams != null)
-            {
-                teams.ChangeName(teamDTO.Name);
-                teams.ChangeModality(teamDTO.Modality);
-                teams.ChangeQtdPlayers(teamDTO.QtdPlayers);
-                _teamRepository.Update(teams);
-            }
+            var teams = _mapper.Map<TeamEntity>(teamDTO);
+            teams.Id = id;
+            _teamRepository.Update(teams);
         }
     }
 }

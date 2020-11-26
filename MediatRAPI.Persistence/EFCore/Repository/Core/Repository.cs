@@ -1,5 +1,6 @@
 ﻿using DDDAPI.Domain.Interfaces.Core;
 using DDDAPI.Persistence.EFCore.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace DDDAPI.Persistence.EFCore.Repository.Core
 {
@@ -32,7 +33,7 @@ namespace DDDAPI.Persistence.EFCore.Repository.Core
 
         public void Update(TEntity entity)
         {
-            _mediatRContext.Update(entity);
+            _mediatRContext.Entry(entity).State = EntityState.Modified;
 
             SaveChanges();
         }
@@ -41,5 +42,6 @@ namespace DDDAPI.Persistence.EFCore.Repository.Core
         {
             _mediatRContext.SaveChangesByTeam();
         }
+        
     }
 }

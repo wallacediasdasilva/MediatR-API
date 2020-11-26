@@ -13,7 +13,7 @@ using System.Reflection;
 
 namespace DDDAPI.CrossCutting.DI
 {
-    public class DIModule
+    public static class DIModule
     {
         public static void ConfigureDbConnection(IServiceCollection serviceCollection, IConfiguration configuration)
         {
@@ -32,7 +32,7 @@ namespace DDDAPI.CrossCutting.DI
 
             #endregion [ Repository ]
 
-            Type[] typelist = GetTypesInNamespace(Assembly.GetExecutingAssembly(), "MediatRAPI.CrossCutting.Mapper");
+            Type[] typelist = GetTypesInNamespace(Assembly.GetExecutingAssembly(), "DDDAPI.CrossCutting.Mapper");
 
             Type[] GetTypesInNamespace(Assembly assembly, string nameSpace)
             {
