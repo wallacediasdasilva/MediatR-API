@@ -4,7 +4,7 @@ using ExpectedObjects;
 using MediatR.Test.Builders;
 using MediatR.Test.Util;
 using MediatRAPI.CrossCutting.Support.Util;
-using MediatRAPI.Domain.User;
+using MediatRAPI.Domain.Team;
 using Xunit;
 
 namespace MediatR.Test.User
@@ -29,7 +29,7 @@ namespace MediatR.Test.User
                 Phone = _faker.Phone.ToString(),
             };
 
-            var user = new UserEntity(userExpected.Name, userExpected.CPF, userExpected.Email, userExpected.Phone);
+            var user = new TeamEntity(userExpected.Name, userExpected.CPF, userExpected.Email, userExpected.Phone);
 
             userExpected.ToExpectedObject().ShouldMatch(user);
         }

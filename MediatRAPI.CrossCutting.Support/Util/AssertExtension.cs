@@ -1,4 +1,4 @@
-﻿using MediatRAPI.CrossCutting.Support.Util;
+﻿using DDDAPI.CrossCutting.Support.Util;
 using Xunit;
 
 namespace MediatR.Test.Util

@@ -1,32 +1,31 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace MediatRAPI.Persistence.Migrations
+namespace DDDAPI.Persistence.Migrations
 {
     public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Users",
+                name: "Teams",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(maxLength: 500, nullable: false),
-                    CPF = table.Column<string>(maxLength: 11, nullable: false),
-                    Email = table.Column<string>(maxLength: 500, nullable: false),
-                    Phone = table.Column<string>(maxLength: 11, nullable: false)
+                    Modality = table.Column<string>(maxLength: 500, nullable: false),
+                    QtdPlayers = table.Column<int>(maxLength: 11, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.PrimaryKey("PK_Teams", x => x.Id);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Teams");
         }
     }
 }

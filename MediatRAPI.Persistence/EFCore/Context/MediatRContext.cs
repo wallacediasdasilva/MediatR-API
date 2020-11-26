@@ -1,25 +1,25 @@
-﻿using MediatRAPI.Domain.User;
-using MediatRAPI.Persistence.Configuration;
+﻿using DDDAPI.Domain.Team;
+using DDDAPI.Persistence.Configuration;
 using Microsoft.EntityFrameworkCore;
 
-namespace MediatRAPI.Persistence.EFCore.Context
+namespace DDDAPI.Persistence.EFCore.Context
 {
     public class MediatRContext : DbContext
     {
 
-        public DbSet<UserEntity> Users { get; set; }
+        public DbSet<TeamEntity> Teams { get; set; }
         public MediatRContext(DbContextOptions options) : base(options)
         {
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new TeamConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }
 
-        public int SaveChangesByUser()
+        public int SaveChangesByTeam()
         {
             return base.SaveChanges();
         }
