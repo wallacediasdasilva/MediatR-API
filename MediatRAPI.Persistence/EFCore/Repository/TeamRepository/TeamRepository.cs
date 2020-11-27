@@ -9,6 +9,7 @@ namespace DDDAPI.Persistence.EFCore.Repository.TeamRepository
     {
         public TeamRepository(MediatRContext mediatRContext) : base(mediatRContext)
         {
+
         }
     }
 }
